@@ -1,4 +1,4 @@
-package com.calendar.service.authorizationserver;
+package com.calendar.service.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
