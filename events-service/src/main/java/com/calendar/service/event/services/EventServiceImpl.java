@@ -1,11 +1,25 @@
 package com.calendar.service.event.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.calendar.service.event.persistence.EventRepository;
 import com.calendar.service.model.Event;
 
+@RestController
 public class EventServiceImpl implements EventService {
+	
+	private EventRepository eventRepository;	
+	
+	@Autowired
+	public EventServiceImpl(EventRepository eventRepository) {
+		this.eventRepository = eventRepository;
+	}
 	
 	private static final Logger LOG = LoggerFactory.getLogger(EventServiceImpl.class);
 
@@ -13,6 +27,12 @@ public class EventServiceImpl implements EventService {
 	public Event getEvent(int eventId) {
 		 LOG.debug(String.format("getEvent: found entity : %s", eventId));
 		return new Event();
+	}
+
+	@Override
+	public Collection<Event> getEvents() {
+		 LOG.debug(String.format("getEvents: found entitys "));
+		return new ArrayList<Event>();
 	}
 
 	@Override
