@@ -1,5 +1,7 @@
 package com.calendar.service.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
@@ -16,14 +18,19 @@ public class User {
 	@Version
 	private Integer version;
 	
-	@Size(min = 4)
+	@NotEmpty(message = "Title must not be empty")
+	@Size(min = 4, message = "Name must be longer than 3 letters ")
 	@Indexed(unique = true)
 	private String name;
 	
-	@Size(min = 6)
+	@NotEmpty(message = "Title must not be empty")
+	@Size(min = 6, message = "Password must be longer than 3 letters ")
 	private String password;
 	
+	@NotEmpty(message = "Title must not be empty")
+	
 	@Indexed(unique = true)
+	@Email(message = "Email should be valid")
 	private String email;
 
 	public String getId() {

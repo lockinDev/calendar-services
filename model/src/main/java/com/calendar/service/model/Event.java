@@ -2,10 +2,13 @@ package com.calendar.service.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "events")
 public class Event {
@@ -18,13 +21,16 @@ public class Event {
 	
 	@DBRef
 	private User user;
-
+	
+	@NotEmpty(message = "Title must not be empty")
 	private String title;
-
+	
 	private String notes;
 
+	@DateTimeFormat
 	private Date start;
-
+	
+	@DateTimeFormat
 	private Date end;
 
 	public String getId() {
