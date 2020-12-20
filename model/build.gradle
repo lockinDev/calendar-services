@@ -27,7 +27,6 @@ repositories {
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
 	implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
-	implementation('org.springframework.boot:spring-boot-starter-validation')
 	
 	implementation('org.hibernate:hibernate-validator:6.1.0.Final')
 	implementation('org.glassfish.web:el-impl:2.2')

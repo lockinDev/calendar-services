@@ -3,6 +3,7 @@ package com.calendar.service.model;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -27,10 +28,12 @@ public class Event {
 	
 	private String notes;
 
-	@DateTimeFormat
+	@NotNull(message = "start date must not be empty")
+	@DateTimeFormat	
 	private Date start;
 	
-	@DateTimeFormat
+	@NotNull(message = "end date must not be empty")
+	@DateTimeFormat	
 	private Date end;
 
 	public String getId() {
@@ -88,6 +91,13 @@ public class Event {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("Event [id=%s, user=%s, title=%s, notes=%s, start=%s, end=%s]", id, user, title, notes,
+				start, end);
+	}
+	
 	
 	
 

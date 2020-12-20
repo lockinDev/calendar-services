@@ -2,6 +2,7 @@ package com.calendar.service.event.services;
 
 import java.util.Collection;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,10 @@ public interface EventService {
 	Collection<Event> getEvents();
 
 	@PostMapping(value = "/event", consumes = "application/json", produces = "application/json")
-	Event createEvent(@RequestBody Event body);
+	Event createEvent(@RequestBody Event body, BindingResult bindingResult);
 
 	@PutMapping(value = "/event", consumes = "application/json", produces = "application/json")
-	Event updateEvent(@RequestBody Event body);
+	Event updateEvent(@RequestBody Event body, BindingResult bindingResult);
 
 	@DeleteMapping(value = "/event/{eventId}")
 	void deleteEvent(@PathVariable int eventId);
