@@ -1,10 +1,12 @@
 package com.calendar.service.validators;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.calendar.service.model.Event;
 
+@Component
 public class EventDatesValidator implements Validator{
 
 	@Override

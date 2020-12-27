@@ -15,7 +15,7 @@ import com.calendar.service.model.Event;
 public interface EventService {
 
 	@GetMapping(value = "/event/{eventId}", produces = "application/json")
-	Event getEvent(@PathVariable int eventId);
+	Event getEvent(@PathVariable Long eventId);
 	
 	@GetMapping(value = "/event", produces = "application/json")
 	Collection<Event> getEvents();
@@ -27,6 +27,6 @@ public interface EventService {
 	Event updateEvent(@RequestBody Event body, BindingResult bindingResult);
 
 	@DeleteMapping(value = "/event/{eventId}")
-	void deleteEvent(@PathVariable int eventId);
+	void deleteEvent(@PathVariable Long eventId);
 
 }

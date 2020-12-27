@@ -9,29 +9,41 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="users")
+@Document(collection = "users")
 public class User {
-	
+
 	@Id
 	private String id;
 
 	@Version
 	private Integer version;
-	
-	@NotEmpty(message = "Title must not be empty")
+
+	@NotEmpty(message = "Name must not be empty")
 	@Size(min = 4, message = "Name must be longer than 3 letters ")
 	@Indexed(unique = true)
 	private String name;
-	
-	@NotEmpty(message = "Title must not be empty")
+
+	@NotEmpty(message = "Password must not be empty")
 	@Size(min = 6, message = "Password must be longer than 3 letters ")
 	private String password;
-	
-	@NotEmpty(message = "Title must not be empty")
-	
+
+	@NotEmpty(message = "Email must not be empty")
 	@Indexed(unique = true)
 	@Email(message = "Email should be valid")
 	private String email;
+
+	public User() {
+	}
+
+	public User(
+			@NotEmpty(message = "Name must not be empty") @Size(min = 4, message = "Name must be longer than 3 letters ") String name,
+			@NotEmpty(message = "Password must not be empty") @Size(min = 6, message = "Password must be longer than 3 letters ") String password,
+			@NotEmpty(message = "Email must not be empty") @Email(message = "Email should be valid") String email) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;
@@ -71,10 +83,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	} 
-	
-	
-	
-	
+	}
 
 }

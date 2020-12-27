@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mapping.context.MappingContext;
@@ -20,6 +21,8 @@ import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 import com.calendar.service.model.Event;
 
 @SpringBootApplication
+@ComponentScan({"com.calendar.service.event.config", "com.calendar.service.validators"})
+
 public class EventsServiceApplication {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(EventsServiceApplication.class);

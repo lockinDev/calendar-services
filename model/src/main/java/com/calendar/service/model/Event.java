@@ -1,12 +1,14 @@
 package com.calendar.service.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +21,9 @@ public class Event {
 
 	@Version
 	private Integer version;
+	
+	@Indexed(unique = true)
+	Long eventId;
 	
 	@DBRef
 	private User user;
@@ -35,6 +40,20 @@ public class Event {
 	@NotNull(message = "end date must not be empty")
 	@DateTimeFormat	
 	private Date end;
+	
+	public Event() {
+	}
+
+	public Event(Long eventId, User user, @NotEmpty(message = "Title must not be empty") String title, String notes,
+			@NotNull(message = "start date must not be empty") Date start,
+			@NotNull(message = "end date must not be empty") Date end) {
+		this.eventId = eventId;
+		this.user = user;
+		this.title = title;
+		this.notes = notes;
+		this.start = start;
+		this.end = end;
+	}
 
 	public String getId() {
 		return id;
@@ -50,6 +69,14 @@ public class Event {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}		
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
 	}
 
 	public String getTitle() {
@@ -90,6 +117,27 @@ public class Event {
 
 	public void setEnd(Date end) {
 		this.end = end;
+	}		
+				
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(eventId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Event other = (Event) obj;
+		return Objects.equals(eventId, other.eventId);
 	}
 
 	@Override

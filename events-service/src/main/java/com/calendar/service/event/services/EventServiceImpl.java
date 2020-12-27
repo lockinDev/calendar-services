@@ -30,7 +30,7 @@ public class EventServiceImpl implements EventService {
 	private static final Logger LOG = LoggerFactory.getLogger(EventServiceImpl.class);
 
 	@Override
-	public Event getEvent(int eventId) {
+	public Event getEvent(Long eventId) {
 		
 		Event event = eventRepository.findByEventId(eventId).
 				orElseThrow(() -> new NotFoundException("No event found for Id: " + eventId));
@@ -95,7 +95,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void deleteEvent(int eventId) {
+	public void deleteEvent(Long eventId) {
         LOG.debug("deleteEvent: tries to delete an entity with eventId: {}", eventId);
         eventRepository.findByEventId(eventId).ifPresent(e -> eventRepository.delete(e));
 	}
