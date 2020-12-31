@@ -9,7 +9,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
-
+ 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'io.spring.dependency-management'
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation('org.springframework.boot:spring-boot-starter-web')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 

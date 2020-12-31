@@ -11,23 +11,28 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DuplicateKeyException;
 
 import com.calendar.service.event.persistence.EventRepository;
 import com.calendar.service.model.Event;
 import com.calendar.service.util.exceptions.InvalidInputException;
 import com.calendar.service.util.exceptions.NotFoundException;
+import com.calendar.service.validators.EventDatesValidator;
 
 @RestController
 public class EventServiceImpl implements EventService {
 	
 	private EventRepository eventRepository;	
-	
+	private static final Logger LOG = LoggerFactory.getLogger(EventServiceImpl.class);	
+	private EventDatesValidator eventDatesValidator;
+
 	@Autowired
-	public EventServiceImpl(EventRepository eventRepository) {
+	public EventServiceImpl(EventRepository eventRepository,
+			EventDatesValidator eventDatesValidator) {
 		this.eventRepository = eventRepository;
+		this.eventDatesValidator = eventDatesValidator;
 	}
 	
-	private static final Logger LOG = LoggerFactory.getLogger(EventServiceImpl.class);
 
 	@Override
 	public Event getEvent(Long eventId) {
@@ -49,10 +54,11 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Event createEvent(@Valid Event body, BindingResult bindingResult) {
-		
-		try {
+	public Event createEvent( @Valid Event body, BindingResult bindingResult) {
+		try { 
 			
+			eventDatesValidator.validate(body, bindingResult);
+									
 			if(bindingResult.hasErrors()) {
 	            throw new Exception(bindingResult.getFieldErrors().stream()
 	            		.map(error -> error.getDefaultMessage())
@@ -65,7 +71,12 @@ public class EventServiceImpl implements EventService {
             
             return event;
 
-        } catch (Exception e) {
+        }
+		catch (DuplicateKeyException dke) {
+            throw new InvalidInputException("Duplicate key, Event Id: " + body.getEventId());
+        } 
+		catch (Exception e) {
+        	LOG.error(e.getMessage()+"--------------------------------------------");
             throw new InvalidInputException(String.format("Invalid body, Error : %s , Event : %s ", e.getMessage(),  body));
         }
 		

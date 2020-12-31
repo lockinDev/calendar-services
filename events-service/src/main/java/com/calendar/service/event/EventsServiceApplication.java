@@ -20,8 +20,8 @@ import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 
 import com.calendar.service.model.Event;
 
-@SpringBootApplication
-@ComponentScan({"com.calendar.service.event.config", "com.calendar.service.validators"})
+@SpringBootApplication 
+@ComponentScan({"com.calendar.service"})
 
 public class EventsServiceApplication {
 	
