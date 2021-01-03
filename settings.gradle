@@ -1,5 +1,6 @@
 rootProject.name = 'calendar-services'
 include ':events-service'
+include ':users-service'
 include ':authorization-server'
 include ':model'
 include ':util'
