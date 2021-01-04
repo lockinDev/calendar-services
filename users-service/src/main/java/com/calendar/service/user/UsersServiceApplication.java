@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -22,10 +23,10 @@ import com.calendar.service.model.User;
 
 
 
-@SpringBootApplication 
+@SpringBootApplication (exclude = {SecurityAutoConfiguration.class})
 @ComponentScan({"com.calendar.service"})
 public class UsersServiceApplication {
-
+ 
 	private static final Logger LOG = LoggerFactory.getLogger(UsersServiceApplication.class);
 	
 	public static void main(String[] args) {

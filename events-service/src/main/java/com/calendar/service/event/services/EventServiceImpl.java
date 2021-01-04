@@ -76,7 +76,6 @@ public class EventServiceImpl implements EventService {
             throw new InvalidInputException("Duplicate key, Event Id: " + body.getEventId());
         } 
 		catch (Exception e) {
-        	LOG.error(e.getMessage()+"--------------------------------------------");
             throw new InvalidInputException(String.format("Invalid body, Error : %s , Event : %s ", e.getMessage(),  body));
         }
 		
