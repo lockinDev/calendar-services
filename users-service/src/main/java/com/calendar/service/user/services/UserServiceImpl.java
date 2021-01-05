@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,12 +23,12 @@ import com.calendar.service.util.exceptions.NotFoundException;
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder bCryptPasswordEncoder;
 	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);	
 	
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository,
-			BCryptPasswordEncoder bCryptPasswordEncoder) {
+			PasswordEncoder bCryptPasswordEncoder) {
 		this.userRepository = userRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
