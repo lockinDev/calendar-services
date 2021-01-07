@@ -34,11 +34,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User getUser(String email) {
-		User user = getUserFromRepository(email).
-				orElseThrow(() -> new NotFoundException("No user found for Id: " + email));
+	public User getUser(String userEmail) {
+		User user = getUserFromRepository(userEmail).
+				orElseThrow(() -> new NotFoundException("No user found for Id: " + userEmail));
 
-		LOG.debug(String.format("getUser: found entity : %s", email));
+		LOG.debug(String.format("getUser: found entity : %s", userEmail));
 		return user;
 	}
 
