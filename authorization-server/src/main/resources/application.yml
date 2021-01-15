@@ -1,1 +1,11 @@
+server.port : 9999
 jwt.key: ymLTU8rq83j4fmJZj60wh4OrMNuntIj4fmJ
+
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: event-db
+  
+---
+
+spring.data.mongodb.host : mongodb

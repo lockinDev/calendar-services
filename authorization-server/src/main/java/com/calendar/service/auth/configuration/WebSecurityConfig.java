@@ -38,6 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Override
+    protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/user").permitAll()
+		.anyRequest().authenticated();
+	}
+	
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring();
 	}
