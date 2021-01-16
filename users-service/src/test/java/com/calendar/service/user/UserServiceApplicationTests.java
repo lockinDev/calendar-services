@@ -117,6 +117,7 @@ public class UserServiceApplicationTests {
 
 	public void postAndVerifyUser(User user, HttpStatus expectedStatus) throws Exception {
 		String json = objectMapper.writeValueAsString(user);
+		System.out.println("///////*****" + json);
 		 client.perform(
 				post("/user").contentType(MediaType.APPLICATION_JSON)
 				.characterEncoding("utf-8")

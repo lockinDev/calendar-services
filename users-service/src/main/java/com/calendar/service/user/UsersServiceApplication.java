@@ -23,7 +23,7 @@ import com.calendar.service.model.User;
 
 
 
-@SpringBootApplication (exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 @ComponentScan({"com.calendar.service"})
 public class UsersServiceApplication {
  

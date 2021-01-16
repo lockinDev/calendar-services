@@ -1,0 +1,23 @@
+jwt.key : ymLTU8rq83j4fmJZj60wh4OrMNuntIj4fmJ
+
+server.port: 7002
+server.error.include-message: always
+
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: event-db
+  auto-index-creation: true
+
+logging:
+  level:
+    root: INFO
+    com.calendar.service.user: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+---
+spring.profiles: docker
+
+spring.data.mongodb.host: mongodb
+
+server.port: 8080
