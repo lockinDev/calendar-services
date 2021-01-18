@@ -4,6 +4,7 @@ HELP.md
 gradle/*
 gradlew
 *.bat
+*/build/*
 build/*
 */target/*
 */target/**

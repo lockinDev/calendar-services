@@ -9,10 +9,14 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+
+plugins {
+	id "io.spring.dependency-management" version "1.0.9.RELEASE"
+}
  
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'io.spring.dependency-management'
+
 
 
 group = 'com.calendar.service.util'
